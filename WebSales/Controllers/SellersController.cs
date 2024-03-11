@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebSales.Models;
 using WebSales.Services;
 
 namespace WebSales.Controllers
@@ -20,6 +21,20 @@ namespace WebSales.Controllers
         {
             var list = _sellerService.FindAll();
             return View(list);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Create(Seller seller)
+        {
+            _sellerService.Insert(seller);
+
+            return RedirectToAction(nameof (Index));
         }
     }
 }
