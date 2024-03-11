@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebSales.Models;
 using WebSales.Data;
+using WebSales.Services;
 
 namespace WebSales
 {
@@ -41,6 +42,7 @@ namespace WebSales
                     options.UseMySql(Configuration.GetConnectionString("WebSalesContext"), builder => builder.MigrationsAssembly("WebSales")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
